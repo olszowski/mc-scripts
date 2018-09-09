@@ -92,10 +92,10 @@ def print_load(cluster_info):
     capacity_idle_perc = round(1.0 * cluster_info.capacity_idle() / cluster_info.max_total_capacity() * 100, 1)
     capacity_mixed_perc = round(1.0 * cluster_info.capacity_mixed() / cluster_info.max_total_capacity() * 100, 1)
 
-    print(f"Idle nodes: {len(cluster_info.get_idle_nodes())}")
-    print(f"- cpus idle: {cluster_info.capacity_idle()} ({capacity_idle_perc}%)")
-    print(f"Mixed nodes: {len(cluster_info.get_mixed_nodes())}")
-    print(f"- cpus idle: {cluster_info.capacity_mixed()} ({capacity_mixed_perc}%)")
+    print(f"Idle nodes:   {len(cluster_info.get_idle_nodes())}")
+    print(f"- cpus idle:  {cluster_info.capacity_idle()} ({capacity_idle_perc}%)")
+    print(f"Mixed nodes:  {len(cluster_info.get_mixed_nodes())}")
+    print(f"- cpus mixed: {cluster_info.capacity_mixed()} ({capacity_mixed_perc}%)")
 
 
 if __name__ == '__main__':
