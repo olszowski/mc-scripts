@@ -43,22 +43,22 @@ class ClusterState:
     def capacity_idle(self):
         idles = [node.cpu_idle for node in self.get_idle_nodes()]
         from functools import reduce
-        return reduce((lambda x, y: x + y), idles)
+        return reduce((lambda x, y: x + y), idles, 0)
 
     def capacity_mixed(self):
         idles = [node.cpu_idle for node in self.get_mixed_nodes()]
         from functools import reduce
-        return reduce((lambda x, y: x + y), idles)
+        return reduce((lambda x, y: x + y), idles, 0)
 
     def max_total_capacity(self):
         idles = [node.cpu_total for node in self.nodes_info]
         from functools import reduce
-        return reduce((lambda x, y: x + y), idles)
+        return reduce((lambda x, y: x + y), idles, 0)
 
     def max_capacity(self):
         capacities = [node.cpu_idle for node in self.nodes_info]
         from functools import reduce
-        return reduce((lambda x, y: x + y), capacities)
+        return reduce((lambda x, y: x + y), capacities, 0)
 
     def __sort(self, nodes):
         from operator import attrgetter
