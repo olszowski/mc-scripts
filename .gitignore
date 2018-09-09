@@ -1,0 +1,6 @@
+venv
+framework-venv
+results
+data
+**/__init__.py
+**/*.png
