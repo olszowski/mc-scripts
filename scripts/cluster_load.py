@@ -50,6 +50,11 @@ class ClusterState:
         from functools import reduce
         return reduce((lambda x, y: x + y), idles)
 
+    def max_total_capacity(self):
+        idles = [node.cpu_total for node in self.nodes_info]
+        from functools import reduce
+        return reduce((lambda x, y: x + y), idles)
+
     def max_capacity(self):
         capacities = [node.cpu_idle for node in self.nodes_info]
         from functools import reduce
@@ -84,10 +89,13 @@ def get_cluster_state_from_os(partition):
 
 
 def print_load(cluster_info):
-    print("Idle nodes: " + str(len(cluster_info.get_idle_nodes())))
-    print("- cpus idle: " + str(cluster_info.capacity_idle()))
-    print("Mixed nodes: " + str(len(cluster_info.get_mixed_nodes())))
-    print("- cpus idle: " + str(cluster_info.capacity_mixed()))
+    capacity_idle_perc = round(1.0 * cluster_info.capacity_idle() / cluster_info.max_total_capacity() * 100, 1)
+    capacity_mixed_perc = round(1.0 * cluster_info.capacity_mixed() / cluster_info.max_total_capacity() * 100, 1)
+
+    print(f"Idle nodes: {len(cluster_info.get_idle_nodes())}")
+    print(f"- cpus idle: {cluster_info.capacity_idle()} ({capacity_idle_perc}%)")
+    print(f"Mixed nodes: {len(cluster_info.get_mixed_nodes())}")
+    print(f"- cpus idle: {cluster_info.capacity_mixed()} ({capacity_mixed_perc}%)")
 
 
 if __name__ == '__main__':
