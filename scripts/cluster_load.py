@@ -85,9 +85,9 @@ def get_cluster_state_from_os(partition):
 
 def print_load(cluster_info):
     logger.info("Idle nodes: ", len(cluster_info.get_idle_nodes()))
-    logger.info("- cpus idle: ", len(cluster_info.capacity_idle()))
+    logger.info("- cpus idle: ", cluster_info.capacity_idle())
     logger.info("Mixed nodes: ", len(cluster_info.get_mixed_nodes()))
-    logger.info("- cpus idle: ", len(cluster_info.capacity_mixed()))
+    logger.info("- cpus idle: ", cluster_info.capacity_mixed())
 
 
 if __name__ == '__main__':
