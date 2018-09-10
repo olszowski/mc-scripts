@@ -38,7 +38,7 @@ class ClusterLoad:
         self.capacity_idle_perc = round(1.0 * self.idle_capacity / self.total_capacity * 100, 1)
         self.capacity_mixed_perc = round(1.0 * self.mixed_capacity / self.total_capacity * 100, 1)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return f'''
 Idle nodes: {self.idle_nodes_count}
 Mixed nodes: {self.mixed_nodes_count}
